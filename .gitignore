@@ -1,0 +1,6 @@
+.cask
+.python-environments
+auto-save-list
+*~
+*.dat
+elpa

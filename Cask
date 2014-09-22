@@ -12,6 +12,7 @@
 (depends-on "deferred")
 (depends-on "epc")
 (depends-on "epl")
+(depends-on "exec-path-from-shell")
 (depends-on "f")
 (depends-on "flymake-easy")
 (depends-on "flymake-python-pyflakes")

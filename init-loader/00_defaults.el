@@ -8,8 +8,23 @@
 (setq-default indent-tabs-mode nil)
 (iswitchb-mode t)
 (global-linum-mode 1)
-
 (setq inhibit-startup-message t)
+(setq make-backup-files nil)
 
 (color-theme-initialize)
 (color-theme-solarized-light)
+
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(setq web-mode-markup-indent-offset 2)
+(setq web-mode-css-indent-offset 2)
+(setq web-mode-code-indent-offset 4)
+
+(setq web-mode-indent-style 1)
+(setq web-mode-comment-style 2)
+
+(setq web-mode-engines-alist
+      '(("jinja" . "\\.html\\'")))
+
+(setq default-directory "~/")
+(setq command-line-default-directory "~/")
+

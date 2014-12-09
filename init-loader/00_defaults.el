@@ -10,6 +10,7 @@
 (global-linum-mode 1)
 (setq inhibit-startup-message t)
 (setq make-backup-files nil)
+(setq auto-save-default nil)
 
 (color-theme-initialize)
 (color-theme-solarized-light)

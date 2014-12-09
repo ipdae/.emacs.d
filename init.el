@@ -1,6 +1,7 @@
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
+(setq init-loader-show-log-after-init 'error-only)
 (init-loader-load "~/.emacs.d/init-loader/")
 
 (when (memq window-system `(mac ns))
@@ -11,3 +12,4 @@
     )
   )
 (exec-path-from-shell-copy-env "PATH")
+

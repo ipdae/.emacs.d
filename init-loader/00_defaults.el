@@ -32,3 +32,5 @@
 (setq ring-bell-function #'ignore)
 
 (toggle-diredp-find-file-reuse-dir 1)
+
+(global-undo-tree-mode t)

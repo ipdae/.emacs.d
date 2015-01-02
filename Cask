@@ -33,5 +33,6 @@
 (depends-on "python-environment")
 (depends-on "s")
 (depends-on "shut-up")
+(depends-on "undo-tree")
 (depends-on "virtualenvwrapper")
 (depends-on "web-mode")

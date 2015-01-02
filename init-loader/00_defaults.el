@@ -29,3 +29,6 @@
 (setq default-directory "~/")
 (setq command-line-default-directory "~/")
 
+(setq ring-bell-function #'ignore)
+
+(toggle-diredp-find-file-reuse-dir 1)

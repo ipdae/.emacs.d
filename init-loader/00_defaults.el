@@ -6,7 +6,8 @@
 
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
-(iswitchb-mode t)
+;; (iswitchb-mode t)
+(icomplete-mode 99)
 (global-linum-mode 1)
 (setq inhibit-startup-message t)
 (setq make-backup-files nil)

@@ -13,7 +13,7 @@
 (setq auto-save-default nil)
 
 (color-theme-initialize)
-(color-theme-solarized)
+(color-theme-solarized-dark)
 
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (setq web-mode-markup-indent-offset 2)

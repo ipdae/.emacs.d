@@ -25,6 +25,7 @@
 (depends-on "let-alist")
 (depends-on "magit")
 (depends-on "markdown-mode")
+(depends-on "nyan-mode")
 (depends-on "package-build")
 (depends-on "pallet")
 (depends-on "pkg-info")

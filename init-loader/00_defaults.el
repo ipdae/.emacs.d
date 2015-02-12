@@ -6,9 +6,8 @@
 
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
-;; (iswitchb-mode t)
+(iswitchb-mode t)
 (icomplete-mode 99)
-(global-linum-mode 1)
 (setq inhibit-startup-message t)
 (setq make-backup-files nil)
 (setq auto-save-default nil)
@@ -35,3 +34,7 @@
 (toggle-diredp-find-file-reuse-dir 1)
 
 (global-undo-tree-mode t)
+
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(nyan-mode 1)

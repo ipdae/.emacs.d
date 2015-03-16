@@ -8,6 +8,7 @@
 (setq-default indent-tabs-mode nil)
 (iswitchb-mode t)
 (icomplete-mode 99)
+(global-linum-mode 1)
 (setq inhibit-startup-message t)
 (setq make-backup-files nil)
 (setq auto-save-default nil)

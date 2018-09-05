@@ -14,11 +14,20 @@
 (setq auto-save-default nil)
 
 (color-theme-initialize)
-(color-theme-solarized-dark)
+;; (load-theme 'flatui t)
+;; (load-theme 'solarized-light t)
+;; (color-theme-solarized)
+(load-theme 'material t)
+;; (load-theme 'dracula t)
+;; (load-theme 'heroku t)
+;; (load-theme 'atom-one-dark t)
+;; (load-theme 'nord t)
 
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-css-indent-offset 2)
+(add-to-list 'auto-mode-alist '("\\.?css\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
+(setq web-mode-markup-indent-offset 4)
+(setq web-mode-css-indent-offset 4)
 (setq web-mode-code-indent-offset 4)
 
 (setq web-mode-indent-style 1)
@@ -39,3 +48,72 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (nyan-mode 1)
+
+(global-set-key (kbd "C-x g") 'magit-status)
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+
+(elpy-enable)
+
+(diff-hl-flydiff-mode)
+(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+
+(setenv "LANG" "en_US.UTF-8")
+(setenv "LC_ALL" "en_US.UTF-8")
+(setenv "LC_CTYPE" "en_US.UTF-8")
+
+
+(global-set-key (kbd "<s-left>") 'windmove-left)
+(global-set-key (kbd "<s-right>") 'windmove-right)
+(global-set-key (kbd "<s-up>") 'windmove-up)
+(global-set-key (kbd "<s-down>") 'windmove-down)
+
+
+(setq python-shell-completion-native-enable nil)
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1)
+  (local-set-key (kbd "C-.") 'tide-jump-to-definition)
+  (local-set-key (kbd "C-,") 'tide-jump-back)
+  (setq typescript-indent-level 2))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+(require 'flycheck)
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "ts" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "tsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+;; enable typescript-tslint checker
+(flycheck-add-mode 'typescript-tslint 'web-mode)
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+(require 'rust-mode)
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
+
+(if (eq system-type 'darwin)
+    (defun new-emacs ()
+      (interactive)
+      (shell-command "open -n -a /Applications/Emacs.app")))

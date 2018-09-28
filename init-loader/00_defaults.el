@@ -14,14 +14,7 @@
 (setq auto-save-default nil)
 
 (color-theme-initialize)
-;; (load-theme 'flatui t)
-;; (load-theme 'solarized-light t)
-;; (color-theme-solarized)
 (load-theme 'material t)
-;; (load-theme 'dracula t)
-;; (load-theme 'heroku t)
-;; (load-theme 'atom-one-dark t)
-;; (load-theme 'nord t)
 
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.?css\\'" . web-mode))
@@ -41,8 +34,6 @@
 
 (setq ring-bell-function #'ignore)
 
-(toggle-diredp-find-file-reuse-dir 1)
-
 (global-undo-tree-mode t)
 
 (scroll-bar-mode -1)
@@ -51,8 +42,6 @@
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-
-(elpy-enable)
 
 (diff-hl-flydiff-mode)
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
@@ -105,15 +94,48 @@
 
 (add-hook 'after-init-hook 'global-company-mode)
 
-(require 'rust-mode)
-(autoload 'rust-mode "rust-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'company-mode)
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-(setq company-tooltip-align-annotations t)
+;; (require 'rust-mode)
+;; (autoload 'rust-mode "rust-mode" nil t)
+;; (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+;; (add-hook 'rust-mode-hook #'racer-mode)
+;; (add-hook 'racer-mode-hook #'company-mode)
+;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+;; (setq company-tooltip-align-annotations t)
 
 (if (eq system-type 'darwin)
     (defun new-emacs ()
       (interactive)
       (shell-command "open -n -a /Applications/Emacs.app")))
+
+(require 'pyenv-mode)
+(defun projectile-pyenv-mode-set ()
+  "Set pyenv version matching project name."
+  (let ((project (projectile-project-name)))
+    (if (member project (pyenv-mode-versions))
+        (pyenv-mode-set project)
+      (pyenv-mode-unset))))
+
+(add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-mode-set)
+
+(require 'pyenv-mode-auto)
+
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
+(use-package elpy
+   :config
+   (package-initialize)
+   (elpy-enable)
+   (setenv "WORKON_HOME" "~/.pyenv/versions/")
+   (setq elpy-rpc-backend "jedi")
+   (setq python-shell-interpreter "~/.pyenv/shims/python3")
+ )
+
+(define-key elpy-mode-map (kbd "C-.") 'elpy-goto-assignment-other-window)
+(define-key global-map (kbd "C-,") 'pop-tag-mark)
+
+(require 'helm-projectile)
+(global-set-key (kbd "C-x p") 'helm-projectile)
+
+(require 'auto-virtualenv)
+(add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)

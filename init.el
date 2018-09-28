@@ -25,21 +25,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   (vector "#c5c8c6" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#8abeb7" "#373b41"))
- '(custom-enabled-themes (quote (sanityinc-tomorrow-eighties)))
- '(custom-safe-themes
-   (quote
-    ("628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" default)))
  '(elm-format-on-save t)
  '(fci-rule-color "#373b41")
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(hl-sexp-background-color "#1c1f26")
  '(package-selected-packages
    (quote
-    (docker company company-racer cargo rust-mode tide color-theme-sanityinc-tomorrow haskell-mode yaml-mode dockerfile-mode highlight-indentation ag diff-hl nord-theme web-mode virtualenvwrapper undo-tree swiper qml-mode python-mode pymacs pallet nyan-mode nsis-mode material-theme markdown-mode magit jinja2-mode jedi init-loader ido-vertical-mode flycheck-pyflakes flatui-theme exec-path-from-shell dired+ csharp-mode color-theme-solarized)))
+    (dash elpy find-file-in-project flycheck ghub git-commit ivy pythonic yasnippet auto-virtualenv auto-virtualenvwrapper helm-projectile projectile use-package docker-compose-mode pyenv-mode-auto docker company company-racer cargo rust-mode tide color-theme-sanityinc-tomorrow haskell-mode yaml-mode dockerfile-mode highlight-indentation ag diff-hl nord-theme web-mode virtualenvwrapper undo-tree swiper qml-mode python-mode pymacs pallet nyan-mode nsis-mode material-theme markdown-mode magit jinja2-mode jedi init-loader ido-vertical-mode flycheck-pyflakes flatui-theme exec-path-from-shell dired+ csharp-mode color-theme-solarized)))
  '(vc-annotate-background nil)
  '(vc-annotate-color-map
    (quote
